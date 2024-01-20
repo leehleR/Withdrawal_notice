@@ -14,11 +14,11 @@ import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model.Inv
 import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.repository.InvestorRepository;
 
 @Service
-public class investorService {
+public class InvestorService {
     private final InvestorRepository investorRepository;
 
     @Autowired
-    public investorService(InvestorRepository investorRepository) {
+    public InvestorService(InvestorRepository investorRepository) {
         this.investorRepository = investorRepository;
     }
 
