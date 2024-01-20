@@ -1,5 +1,6 @@
 package com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.services;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +8,9 @@ import java.util.Random;
 
 import javax.print.DocFlavor.STRING;
 
+import org.apache.commons.logging.Log;
+import org.slf4j.LoggerFactory;
+// import org.hibernate.engine.jdbc.env.internal.LobCreationLogging_.logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,45 +20,53 @@ import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.repositor
 @Service
 public class InvestorService {
     private final InvestorRepository investorRepository;
+   
 
     @Autowired
     public InvestorService(InvestorRepository investorRepository) {
         this.investorRepository = investorRepository;
     }
 
-    public Investor createInvestor(long id, String name, String lastname){
+    public Investor createInvestor(long id, String firstName, String lastName){
 
-        Optional<Investor> existingInvestor = investorRepository.findByIdAndFirstnameAndLastname(id, name, lastname);
+        // Optional<Investor> existingInvestor = investorRepository.findByIdAndFirstNameAndLastName(id, firstName, lastName);
 
-        if (existingInvestor.isPresent()){
-            Investor investorExists = existingInvestor.get();
-            return investorExists;
-        }else{
-            Investor addNewInvestor = addInvestorInfo(id,name,lastname);
-            return addNewInvestor;
-        }
+        // if (existingInvestor.isPresent() ){
+        //     Investor investorExists = existingInvestor.get();
+        //     return investorExists;
+        // }else{
+        //     Investor addNewInvestor = addInvestorInfo(id,firstName,lastName);
+        //     return addNewInvestor;
+        // }
+
+        return investorRepository.findByIdAndFirstNameAndLastName(id, firstName, lastName)
+        .orElseGet(() -> {
+            // Log.info("not found")
+            Investor newInvestor = addInvestorInfo(id, firstName, lastName);
+            return investorRepository.save(newInvestor);
+        });
        
         
     }
 
-    private Investor addInvestorInfo(long id, String name, String lastname){
+    private Investor addInvestorInfo(long id, String firstName, String lastName){
         Investor investor = new Investor();
         
         investor.setId(id);
-        investor.setFirstName(name);
-        // investor.setLastName(lastname);
+        investor.setFirstName(firstName);
+        investor.setLastName(lastName);
 
         Random random = new Random();
         investor.setAge(random.nextInt(80) + 18);
         investor.setAmount(random.nextDouble() * 10000);
-        investor.setEmail(name.toLowerCase() + "." + lastname.toLowerCase() + "@example.com");
+        investor.setEmail(firstName.toLowerCase() + "." + lastName.toLowerCase() + "@example.com");
         investor.setContact(contactGenerator());
 
         return investor;
 
     }
 
-    private int contactGenerator(){
+    private String contactGenerator(){
         Random random = new Random();
 
         StringBuilder contact = new StringBuilder();
@@ -64,8 +76,8 @@ public class InvestorService {
             contact.append(digit);
         }
 
-        int randomContact = Integer.parseInt(contact.toString());
+        // int randomContact = Integer.parseInt(contact.toString());
 
-        return randomContact;
+        return contact.toString();
     }
 }

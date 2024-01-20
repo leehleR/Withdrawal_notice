@@ -1,5 +1,8 @@
 package com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model;
 
+import java.util.ArrayList;
+
+import org.hibernate.mapping.List;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
 
 import jakarta.annotation.Generated;
@@ -8,8 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
 
+@Entity
 public class Investor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +22,10 @@ public class Investor {
     private String lastName;
     private String email;
     // add address
-    private int contact;
+    private String contact;
     private int age;
     private double amount;
-    // product
+    private List<Product> products = new ArrayList<>();
     
 
     public long getId() {
@@ -47,11 +50,11 @@ public class Investor {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public int getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public void setContact(int contact) {
+    public void setContact(String contact) {
         this.contact = contact;
     }
 

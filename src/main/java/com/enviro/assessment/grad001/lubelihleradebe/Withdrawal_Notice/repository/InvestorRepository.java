@@ -9,6 +9,10 @@ import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model.Inv
 
 public interface InvestorRepository extends JpaRepository < Investor, String>{
 
-    Optional<Investor> findByIdAndFirstnameAndLastname(long id, String firstName, String lastname);
+    Optional<Investor> findByIdAndFirstNameAndLastName(long id, String firstName, String lastName);
+
+    // Investor save(Investor investor);
+    
+
     
 }
