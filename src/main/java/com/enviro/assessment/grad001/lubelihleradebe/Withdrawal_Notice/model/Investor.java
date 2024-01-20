@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.investor;
+package com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model;
 
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
 
@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 
 @Entity
 
-public class investor {
+public class Investor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -20,14 +20,10 @@ public class investor {
     private String email;
     // add address
     private int contact;
+    private int age;
+    private double amount;
+    // product
     
-    public investor(long id, String firstName, String lastName, String email, int contact){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.contact = contact;
-        this.id = id;
-    }
 
     public long getId() {
         return id;
@@ -48,7 +44,9 @@ public class investor {
     public String getLastName() {
         return lastName;
     }
-
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
     public int getContact() {
         return contact;
     }
@@ -63,6 +61,18 @@ public class investor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public double getAmount() {
+        return amount;
+    }
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
 
