@@ -39,11 +39,6 @@ public class Investor {
     @Autowired
     Set<Product> products = new HashSet<>();
 
-    // public Investor() {
-    //     this.age = investorAge();
-    //     this.amount = moneyInvested();
-    // }
-
     public void generateInitialData() {
         this.age = investorAge();
         this.amount = moneyInvested();

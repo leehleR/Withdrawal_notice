@@ -40,18 +40,6 @@ public class InvestorService {
         return investorRepository.findById(investor_Id);
     }
 
-    // public Investor getInvestorWithProducts(long investorId) {
-    //     Investor investor = investorRepository.findById(investorId).orElse(null);
-    //     if (investor != null) {
-    //         investor.setProducts(productRepository.findByInvestor_Id(investorId));
-    //     }
-    //     return investor;
-    // }
-
-    
-      
-
-
     public Investor createInvestor(long investor_Id, String firstName, String lastName){
 
         Investor theInvestor = investorRepository.findByIdAndFirstNameAndLastName(investor_Id, firstName, lastName)
@@ -101,4 +89,8 @@ public class InvestorService {
 
         return "0"+ contact.toString();
     }
+    public void updateInvestor(Investor investor) {
+        investorRepository.save(investor);
+    }
+    
 }
