@@ -1,16 +1,20 @@
 package com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.controller;
+import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model.Investor;
+import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model.Product;
+import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.services.InvestorService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model.Investor;
-import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.services.InvestorService;
+
 
 @RestController
 public class InvestorController {
@@ -20,6 +24,7 @@ public class InvestorController {
     @Autowired
     public InvestorController(InvestorService investorService) {
         this.investorService = investorService;
+    
     }
 
     // @PostMapping("/investor/{id}/{firstName}/{lastName}")
@@ -31,15 +36,12 @@ public class InvestorController {
     //     return new ResponseEntity<>(user, HttpStatus.CREATED);
     // }
 
-    @GetMapping("/{id}/{firstName}/{lastName}")
-    // public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-    //   return String.format("Hello %s!", name);
-    // }
+    @GetMapping("/{investor_id}/{firstName}/{lastName}")
     public ResponseEntity<Investor> createInvestor(
-            @PathVariable Long id,
+            @PathVariable Long investor_id,
             @PathVariable String firstName,
             @PathVariable String lastName) {
-        Investor investor = investorService.createInvestor(id, firstName, lastName);
+        Investor investor = investorService.createInvestor(investor_id, firstName, lastName);
 
         if (investor != null){
             return new ResponseEntity<>(investor, HttpStatus.OK);
@@ -48,5 +50,16 @@ public class InvestorController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     } 
+
+    @GetMapping("/{investorId}")
+    public ResponseEntity<List<Product>> getInvestorWithProducts(@PathVariable long investorId) {
+        Investor investor = investorService.getInvestorWithProducts(investorId);
+        if (investor != null) {
+            List<Product> products = investorService.getInvestorProducts(investorId);
+            return ResponseEntity.ok(products);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     
 }
