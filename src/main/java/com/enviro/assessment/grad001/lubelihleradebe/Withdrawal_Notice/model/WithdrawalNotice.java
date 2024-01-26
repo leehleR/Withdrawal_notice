@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -21,4 +24,13 @@ public class WithdrawalNotice {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Products products;
+
+    @Transient
+    private String investorName;
+
+
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 }
