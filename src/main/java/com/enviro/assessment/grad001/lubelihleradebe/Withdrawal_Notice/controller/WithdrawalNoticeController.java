@@ -2,6 +2,7 @@ package com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.controll
 
 
 import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model.WithdrawalNotice;
+import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.service.NotificationService;
 import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.service.WithdrawalNoticeService;
 import com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.service.extra.CsvUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,13 @@ import java.util.List;
 public class WithdrawalNoticeController {
 
     private final WithdrawalNoticeService withdrawalNoticeService;
+    private final NotificationService notificationService;
 
 
     @Autowired
-    public WithdrawalNoticeController(WithdrawalNoticeService withdrawalNoticeService) {
+    public WithdrawalNoticeController(WithdrawalNoticeService withdrawalNoticeService, NotificationService notificationService) {
         this.withdrawalNoticeService = withdrawalNoticeService;
+        this.notificationService = notificationService;
     }
 
     @PostMapping("/make")

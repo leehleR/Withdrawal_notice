@@ -20,9 +20,12 @@ public class WithdrawalNoticeService {
     private final WithdrawalNoticeRepository withdrawalNoticeRepository;
     private final ProductRepository productRepository;
 
-    public WithdrawalNoticeService(WithdrawalNoticeRepository withdrawalNoticeRepository, ProductRepository productRepository) {
+    private final NotificationService notificationService;
+
+    public WithdrawalNoticeService(WithdrawalNoticeRepository withdrawalNoticeRepository, ProductRepository productRepository, NotificationService notificationService) {
         this.withdrawalNoticeRepository = withdrawalNoticeRepository;
         this.productRepository = productRepository;
+        this.notificationService = notificationService;
     }
 
 
@@ -38,9 +41,7 @@ public class WithdrawalNoticeService {
         if(withdrawalAmount > updateCurrentAmount || withdrawalAmount > withdrawalLimit){
             throw new IllegalStateException("Withdrawal amount exceeds current balance");
         }
-        if(updateCurrentAmount < 0){
-            throw new IllegalStateException("Insufficient funds for withdrawal");
-        }
+
 
         product.setCurrentAmount(updateCurrentAmount);
 
@@ -49,7 +50,11 @@ public class WithdrawalNoticeService {
                 .products(product)
                 .investorName(product.getInvestor().getFullName())
                 .build();
-        return withdrawalNoticeRepository.save(withdrawalNotice);
+        WithdrawalNotice savedWithdrawal = withdrawalNoticeRepository.save(withdrawalNotice);
+
+        sendWithdrawalNotification(product, withdrawalAmount, updateCurrentAmount);
+
+        return savedWithdrawal;
     }
 
     public List<WithdrawalNotice> getWithdrawalNotice(Long productId, Long investorId,LocalDateTime startDate, LocalDateTime endDate){
@@ -63,6 +68,17 @@ public class WithdrawalNoticeService {
                 throw new IllegalStateException("Investor age must be greater than 65");
             }
         }
+    }
+
+    private void sendWithdrawalNotification(Products product,
+                                            double withdrawalAmount,
+                                            double closingBalanced){
+        notificationService.sendWithdrawalNotification(
+                product.getInvestor(),
+                product.getCurrentAmount() + withdrawalAmount,
+                withdrawalAmount,
+                closingBalanced
+        );
     }
 
 
