@@ -42,7 +42,8 @@ Investor Management:
 - GET /enviro/investor: Retrieve all investors.
 - POST /enviro/investor: Create a new investor.
 
-&nbsp;&nbsp;&nbsp;{
+```JSON
+{
   "fullName": "Mike Ross",
   "age": 35,
   "gender": "male",
@@ -67,6 +68,7 @@ Investor Management:
   }
   ]
   }
+```
 
 Withdrawal Notices:
 --- 
