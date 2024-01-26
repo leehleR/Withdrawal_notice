@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Withdrawal_Notice {
+public class WithdrawalNotice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

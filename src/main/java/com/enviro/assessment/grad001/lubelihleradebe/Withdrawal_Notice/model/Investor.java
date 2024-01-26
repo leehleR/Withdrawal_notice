@@ -1,6 +1,7 @@
 package com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,7 +34,9 @@ public class Investor {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "investor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ElementCollection
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "investor", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Products> productsList;
 
 //    @ElementCollection

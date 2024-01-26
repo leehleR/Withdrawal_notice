@@ -18,7 +18,7 @@ public class InvestorService {
     }
 
     public List<Investor> findAllInvestors(){
-        return investorRepository.findAll();
+        return investorRepository.findAllInvestors();
     }
 
 
@@ -28,9 +28,14 @@ public class InvestorService {
                 .orElseThrow(() -> new IllegalArgumentException("Investor not found"));
     }
 
+    @Transactional
+    public Investor findInvestorProducts(Long investorId) {
+        return investorRepository.findInvestorProductsById(investorId);
+    }
+
     public Investor addInvestor(Investor investor){
-//        List<String> productTypes = investor.getProductTypes();
-//        investor.setProductTypes(productTypes);
+//        List<Products> productTypes = investor.getProductsList();
+//        investor.setProductsList(productTypes);
         return investorRepository.save(investor);
     }
 
@@ -38,7 +43,12 @@ public class InvestorService {
         investorRepository.deleteById(investorId);
     }
 
-    public Investor findInvestorProducts(long investorId){
-        return investorRepository.findInvestorProductsById(investorId);
-    }
+
+//    @Transactional
+//    public Investor findInvestorProducts(long investorId){
+//        Investor investor = investorRepository.findInvestorProductsById(investorId);
+//        List<Products> productsList = investor.getProductsList();
+//
+//        return investor;
+//    }
 }

@@ -1,6 +1,7 @@
 package com.enviro.assessment.grad001.lubelihleradebe.Withdrawal_Notice.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,7 +25,8 @@ public class Products {
 
     private double currentAmount;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "investor_id")
+    @JsonBackReference
     private Investor investor;
 }

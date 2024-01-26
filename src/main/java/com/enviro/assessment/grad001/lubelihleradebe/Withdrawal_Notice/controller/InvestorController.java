@@ -21,7 +21,7 @@ public class InvestorController {
     }
 
     @GetMapping
-    public List<Investor> GetInvestors(){
+    public List<Investor> getInvestors(){
         return investorService.findAllInvestors();
     }
 
@@ -31,15 +31,17 @@ public class InvestorController {
         return ResponseEntity.ok(addInvestor);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Investor> getInvestorInformation(@PathVariable Long id){
-        Investor findInvestor = investorService.findInvestor(id);
-        return ResponseEntity.ok(findInvestor);
+    @GetMapping("/{investorId}")
+    public ResponseEntity<Investor> getInvestorInformation(@PathVariable Long investorId){
+        Investor foundInvestor = investorService.findInvestorProducts(investorId);
+
+
+        return ResponseEntity.ok(foundInvestor);
     }
 
-    @GetMapping("/{id}/products")
-    public ResponseEntity<Investor> getInvestorProducts(@PathVariable Long investorId){
-        Investor products = investorService.findInvestorProducts(investorId);
-        return ResponseEntity.ok(products);
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Investor> getInvestorProducts(@PathVariable Long investorId){
+//        Investor products = investorService.findInvestorProducts(investorId);
+//        return ResponseEntity.ok(products);
+//    }
 }
