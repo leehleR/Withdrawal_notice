@@ -25,11 +25,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>com.opencsv</groupId>-->
-<!--			<artifactId>opencsv</artifactId>-->
-<!--			<version></version>-->
-<!--		</dependency>-->
+
 
 
 		<dependency>
@@ -52,13 +48,7 @@
 			<artifactId>opencsv</artifactId>
 			<version>4.1</version>
 		</dependency>
-<!--		<dependencies>-->
-<!--    &lt;!&ndash; Add Spring Web dependency &ndash;&gt;-->
-<!--    <dependency>-->
-<!--        <groupId>org.springframework.boot</groupId>-->
-<!--        <artifactId>spring-boot-starter-web</artifactId>-->
-<!--    </dependency>-->
-<!--</dependencies>-->
+
 
 	</dependencies>
 

@@ -65,10 +65,5 @@ public class WithdrawalNoticeService {
         }
     }
 
-//    private void withdrawalAmountValidation(Products products, double withdrawalAmount){
-//        double withdrawalLimit = 0.9 * products.getCurrentAmount();
-//        if(withdrawalAmount > products.getCurrentAmount() || withdrawalAmount > withdrawalLimit){
-//            throw new IllegalStateException("Withdrawal amount exceeds current balance");
-//        }
-//    }
+
 }

@@ -39,9 +39,4 @@ public class InvestorController {
         return ResponseEntity.ok(foundInvestor);
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Investor> getInvestorProducts(@PathVariable Long investorId){
-//        Investor products = investorService.findInvestorProducts(investorId);
-//        return ResponseEntity.ok(products);
-//    }
 }

@@ -39,11 +39,6 @@ public class Investor {
     @JsonManagedReference
     private List<Products> productsList;
 
-//    @ElementCollection
-//    @CollectionTable(name = "investor_product_types", joinColumns = @JoinColumn(name = "investor_id"))
-//    @Column(name = "product_type")
-//    private List<String> productTypes;
-
 
     @Embeddable
     @Data

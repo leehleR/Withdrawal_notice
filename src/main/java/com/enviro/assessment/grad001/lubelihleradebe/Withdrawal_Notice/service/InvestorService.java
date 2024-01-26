@@ -34,8 +34,6 @@ public class InvestorService {
     }
 
     public Investor addInvestor(Investor investor){
-//        List<Products> productTypes = investor.getProductsList();
-//        investor.setProductsList(productTypes);
         return investorRepository.save(investor);
     }
 
@@ -44,11 +42,4 @@ public class InvestorService {
     }
 
 
-//    @Transactional
-//    public Investor findInvestorProducts(long investorId){
-//        Investor investor = investorRepository.findInvestorProductsById(investorId);
-//        List<Products> productsList = investor.getProductsList();
-//
-//        return investor;
-//    }
 }
