@@ -95,5 +95,5 @@ Notifications are automatically sent upon successful withdrawal.
 - Clone the repository:
 
 `````bash
-git clone https://github.com/yourusername/investment-management-system.git
+https://github.com/leehleR/Withdrawal_notice.git
 
